@@ -17,14 +17,15 @@ public class Garbage {
 
     /**
      * Uses reflection to get Unsafe instance.
+     *
      * @return Unsafe instance.
      */
-    private static Unsafe getUnsafe() {
+    public static Unsafe getUnsafe() {
         Unsafe unsafe = null;
-        try{
+        try {
             Field field = Unsafe.class.getDeclaredField("theUnsafe");
             field.setAccessible(true);
-            unsafe= (Unsafe) field.get(null);
+            unsafe = (Unsafe) field.get(null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,6 +34,7 @@ public class Garbage {
 
     /**
      * Address getter
+     *
      * @return the address of this garbage object.
      */
     public long getAddress() {
