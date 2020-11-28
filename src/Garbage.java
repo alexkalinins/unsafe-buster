@@ -23,8 +23,11 @@ public class Garbage {
     public static Unsafe getUnsafe() {
         Unsafe unsafe = null;
         try {
+            // Accessing Unsafe field with Reflection:
             Field field = Unsafe.class.getDeclaredField("theUnsafe");
             field.setAccessible(true);
+
+            // Retrieving and casting Unsafe from Reflection:
             unsafe = (Unsafe) field.get(null);
         } catch (Exception e) {
             e.printStackTrace();

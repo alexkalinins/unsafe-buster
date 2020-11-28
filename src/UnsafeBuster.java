@@ -3,17 +3,17 @@ import sun.misc.Unsafe;
 
 public class UnsafeBuster {
     public static void main(String[] args) {
-//        long counter = 0;
-//        long garbageSize = Integer.MAX_VALUE;
-//        Unsafe unsafe = Garbage.getUnsafe();
-//
-//        while (true) {
-//            unsafe.allocateMemory(garbageSize);
-//            System.out.printf("Garbage Created: %d%n", ++counter);
-//        }
+        TotallyNormalClassNothingSuspiciousGoingOnHere myClass = new TotallyNormalClassNothingSuspiciousGoingOnHere();
 
-        Unsafe unsafe = Garbage.getUnsafe();
-        unsafe.getByte(0); // Notice: address 0 has never been allocated; will crash JVM.
+        try{
+            myClass.add(1,1);
+            //myClass.subtract(1,1);
+        } catch (Throwable e){
+            System.out.println("Nice Try! (haha), caught a " + e.toString());
+        } finally {
+            System.out.println("If you can read this, then JVM survived!");
+            System.out.println(            Garbage.getUnsafe().pageSize());
+        }
 
     }
 }
